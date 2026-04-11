@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: msdonaciones
+          uri: http://localhost:8081
+          predicates:
+            - Path=/donaciones,/donaciones/**
+
+        - id: mslogistica
+          uri: http://localhost:8082
+          predicates:
+            - Path=/centros,/centros/**,/envios,/envios/**
+
+        - id: msnecesidades
+          uri: http://localhost:8083
+          predicates:
+            - Path=/necesidades,/necesidades/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
