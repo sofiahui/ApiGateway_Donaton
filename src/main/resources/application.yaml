@@ -4,23 +4,27 @@ server:
 spring:
   application:
     name: api-gateway
+  main:
+    web-application-type: reactive
   cloud:
     gateway:
-      routes:
-        - id: msdonaciones
-          uri: http://localhost:8081
-          predicates:
-            - Path=/donaciones,/donaciones/**
+      server:
+        webflux:
+          routes:
+            - id: ms-donaciones
+              uri: http://localhost:8081
+              predicates:
+                - Path=/donaciones,/donaciones/**
 
-        - id: mslogistica
-          uri: http://localhost:8082
-          predicates:
-            - Path=/centros,/centros/**,/envios,/envios/**
+            - id: ms-logistica
+              uri: http://localhost:8082
+              predicates:
+                - Path=/centros,/centros/**,/envios,/envios/**
 
-        - id: msnecesidades
-          uri: http://localhost:8083
-          predicates:
-            - Path=/necesidades,/necesidades/**
+            - id: ms-necesidades
+              uri: http://localhost:8083
+              predicates:
+                - Path=/necesidades,/necesidades/**
 
 management:
   endpoints:
