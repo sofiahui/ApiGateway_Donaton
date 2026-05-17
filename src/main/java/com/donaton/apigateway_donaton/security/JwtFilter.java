@@ -16,7 +16,7 @@ public class JwtFilter implements GlobalFilter, Ordered {
                              org.springframework.cloud.gateway.filter.GatewayFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
 
-        if (path.startsWith("/auth/login")) {
+        if (path.startsWith("/auth/")) {
             return chain.filter(exchange);
         }
 

@@ -11,6 +11,11 @@ spring:
       server:
         webflux:
           routes:
+            - id: auth
+              uri: http://localhost:8080
+              predicates:
+                  - Path=/auth/**
+
             - id: ms-donaciones
               uri: http://localhost:8081
               predicates:
